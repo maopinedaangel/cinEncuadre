@@ -1,13 +1,13 @@
 <template>
-  <div id="div_autor">
-    <form v-on:submit.prevent="autenticar" id="acceso_autor">
-      <label id="label_autor" for="input_autor">Digite su username:</label>
-      <input type="text" id="input_autor" v-model="username" name="input_autor">
-      <label id="label_password" for="input_password">Digite su contraseña:</label>
-      <input type="text" id="input_password" v-model="password" name="input_password">      
-      <button type="submit" id="boton_autor">Enviar</button><br><br>
+  <div id="div-autor">
+    <form v-on:submit.prevent="autenticar" id="acceso-autor">
+      <label id="label-autor" for="input-autor">Digite su username:</label>
+      <input type="text" id="input-autor" v-model="datos_user.username" name="input-autor"><br/><br/>
+      <label id="label-password" for="input-password">Digite su contraseña:</label>
+      <input type="text" id="input-password" v-model="datos_user.password" name="input-password"><br/><br/>      
+      <button type="submit" id="boton-autor">Enviar</button><br><br>
     </form>
-    <label id="label_respuesta">{{ bienvenida }}</label> 
+    <label id="label-respuesta">{{ bienvenida }}</label> 
 
   </div>
 </template>
@@ -18,43 +18,39 @@ export default {
   name: 'Autor',
   data: function() {
     return {
-      username: "",
-      nombre: "",
-      apellido: "",
-      password: "",
+      datos_user: {
+        username: "",
+        password: ""
+      },
       bienvenida: "No se ha autenticado.",
-      autores: {}
     }
   },
   methods: {
     autenticar: function() {    
-      alert("El username registrado es " + this.username);
-      axios.get("http://127.0.0.1:8000/autor", { params: { username: this.username}})
+      //alert("El username registrado es " + this.datos_user.username);
+      axios.post("http://127.0.0.1:8000/autor/auth", this.datos_user)
       .then( result => {
-        this.nombre = result.data.nombre;
-        this.apellido = result.data.apellido;
-        this.bienvenida = "Se ha autenticado correctamente el usuario " + this.nombre + " " + this.apellido + "."
+        if (result.data.Autenticado) {
+          this.username = result.data.username
+          this.bienvenida = "Se ha autenticado correctamente el usuario " + this.datos_user.username + "." 
+          this.$emit('autenticar', this.datos_user.username)                                         
+        }
       })
       .catch( error => {
-        alert("No se encontró el usuario!")
+        alert(error.response.data.detail)
       })
     },
-    todos: function() {
-      axios.get("http://127.0.0.1:8000/autores")
-      .then( result => {
-        this.autores = result.data;
-        msg = "";
-        for (i in autores) {
-          alert("Se ha autenticado correctamente el usuario " + i.nombre + " " + i.apellido + "." + "\n")
-          msg += "Se ha autenticado correctamente el usuario " + i.nombre + " " + i.apellido + "." + "\n";
-        }
-          this.bienvenida += msg;        
 
+    /*verPerfil: function() {
+      axios.get("http://127.0.0.1:8000/autor/perfil", { params: { username: this.datos_user.username}})
+      .then( result => {  
+        this.bienvenida = "Se encontró un usuario de nombre " + result.data.nombre + " " + result.data.apellido + "."     
       })
-      .catch( error => {
-        alert("No se encontró el usuario!")
+      .catch(error => {
+        alert("El usuario no existe.")
       })
-    }      
+    },*/
+  
     }
 
 }
@@ -62,10 +58,10 @@ export default {
 
 
 <style scoped>
-  #label_autor, #label_password {
+  #label-autor, #label-password {
     color:black;
   }
-  #label_respuesta {
+  #label-respuesta {
     color: black;
   }
 </style>
