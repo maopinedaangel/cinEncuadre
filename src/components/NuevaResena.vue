@@ -60,7 +60,7 @@ export default {
             //alert("Se guardarán los datos de la pelicula " + this.datos.peli_in.titulo)     
             axios
             //.post("http://localhost:8000/resena/save", this.datos)            
-            .post("https://cinencuadre.herokuapp.com/resena/save", this.datos)
+            .post("https://api-cinencuadre.herokuapp.com/resena/save", this.datos)
             .then(respuesta => {
                 alert(respuesta.data.mensaje);
             })
@@ -76,7 +76,7 @@ export default {
         alert("id = " + idResena)      
         if (idResena != null) {
             //axios.get("http://127.0.0.1:8000/resena", { params: { id: idResena}})            
-            axios.get("https://cinencuadre.herokuapp.com/resena", { params: { id: idResena}})
+            axios.get("https://api-cinencuadre.herokuapp.com/resena", { params: { id: idResena}})
             .then( result => {  
                 this.datos.articulo_in.titulo = result.data[0].titulo
                 this.datos.articulo_in.texto = result.data[0].texto

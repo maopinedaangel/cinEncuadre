@@ -46,7 +46,7 @@ export default {
     },
     beforeCreate: function() {  
         //axios.get("http://127.0.0.1:8000/autores")      
-        axios.get("https://cinencuadre.herokuapp.com/autores")
+        axios.get("https://api-cinencuadre.herokuapp.com/autores")
         .then( result => {
             this.nAutores = result.data.length
             this.autores = result.data

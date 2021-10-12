@@ -46,7 +46,7 @@ export default {
     beforeCreate: function() {
         
         //axios.get("http://127.0.0.1:8000/resenas")          
-        axios.get("https://cinencuadre.herokuapp.com/resenas")            
+        axios.get("https://api-cinencuadre.herokuapp.com/resenas")            
         .then( result => {
             this.lista = result.data
             var nPeliculas = this.lista.length 
@@ -55,7 +55,7 @@ export default {
                 //var num = Math.floor(Math.random()*(nPeliculas)) + 1
                 var num = nPeliculas - i
                 //axios.get("http://127.0.0.1:8000/resena", { params: { id: num }})                
-                axios.get("https://cinencuadre.herokuapp.com/resena", { params: { id: num }})
+                axios.get("https://api-cinencuadre.herokuapp.com/resena", { params: { id: num }})
                 .then( datos => {  
                     this.listaCorta.push(datos.data[0])   
                 })
