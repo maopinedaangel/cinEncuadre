@@ -46,7 +46,9 @@ export default {
     },  
 
     created: function() {
-        axios.get("http://127.0.0.1:8000/autor/perfil", { params: { username: this.user}})
+        
+        //axios.get("http://127.0.0.1:8000/autor/perfil", { params: { username: this.user}})        
+        axios.get("https://cinencuadre.herokuapp.com/autor/perfil", { params: { username: this.user}})
         .then( result => {
             this.nickname = result.data.nombre + " " + result.data.apellido
             this.about = result.data.perfil

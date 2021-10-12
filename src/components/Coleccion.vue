@@ -43,8 +43,9 @@ export default {
         var mi_director = this.$route.query.director
         var mi_pais = this.$route.query.pais                
         var mi_anno = this.$route.query.anno
-        var mi_categoria = this.$route.query.categoria        
-        axios.get("http://127.0.0.1:8000/resenas", { params: {username: mi_username, director: mi_director, pais: mi_pais, anno: mi_anno, categoria: mi_categoria, criterio: this.criterio}})          
+        var mi_categoria = this.$route.query.categoria
+        //axios.get("http://127.0.0.1:8000/resenas", { params: {username: mi_username, director: mi_director, pais: mi_pais, anno: mi_anno, categoria: mi_categoria, criterio: this.criterio}})              
+        axios.get("https://cinencuadre.herokuapp.com/resenas", { params: {username: mi_username, director: mi_director, pais: mi_pais, anno: mi_anno, categoria: mi_categoria, criterio: this.criterio}})          
         .then( result => {
             this.nPeliculas = result.data.length
             this.lista = result.data
@@ -61,8 +62,9 @@ export default {
         var mi_director = this.$route.query.director
         var mi_pais = this.$route.query.pais                
         var mi_anno = this.$route.query.anno
-        var mi_categoria = this.$route.query.categoria        
-        axios.get("http://127.0.0.1:8000/resenas", { params: {username: mi_username, director: mi_director, pais: mi_pais, anno: mi_anno, categoria: mi_categoria, criterio: this.criterio}})          
+        var mi_categoria = this.$route.query.categoria
+        //axios.get("http://127.0.0.1:8000/resenas", { params: {username: mi_username, director: mi_director, pais: mi_pais, anno: mi_anno, categoria: mi_categoria, criterio: this.criterio}})                         
+        axios.get("https://cinencuadre.herokuapp.com/resenas", { params: {username: mi_username, director: mi_director, pais: mi_pais, anno: mi_anno, categoria: mi_categoria, criterio: this.criterio}})          
         .then( result => {
             this.nPeliculas = result.data.length
             this.lista = result.data

@@ -74,7 +74,8 @@ export default {
     beforeCreate: function() {       
         this.idResena = this.$route.params.id
         //alert("id guardado: " + this.idResena)
-        axios.get("http://127.0.0.1:8000/resena", { params: { id: this.idResena}})
+        //axios.get("http://127.0.0.1:8000/resena", { params: { id: this.idResena}})        
+        axios.get("https://cinencuadre.herokuapp.com/resena", { params: { id: this.idResena}})
         .then( result => {  
             this.tituloResena = result.data[0].titulo
             this.txtResena = result.data[0].texto

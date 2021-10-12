@@ -44,8 +44,9 @@ export default {
             return require('../assets/prof/'+ pic)
         }
     },
-    beforeCreate: function() {
-        axios.get("http://127.0.0.1:8000/autores")
+    beforeCreate: function() {  
+        //axios.get("http://127.0.0.1:8000/autores")      
+        axios.get("https://cinencuadre.herokuapp.com/autores")
         .then( result => {
             this.nAutores = result.data.length
             this.autores = result.data

@@ -38,7 +38,9 @@ export default {
             }) 
             */
             var nCategorias
-            axios.get("http://127.0.0.1:8000/categorias")
+            
+            //axios.get("http://127.0.0.1:8000/categorias")            
+            axios.get("https://cinencuadre.herokuapp.com/categorias")
             .then( result => {
                 var listaCategorias = result.data
                 nCategorias = listaCategorias.length  
@@ -59,7 +61,9 @@ export default {
     },
     beforeCreate: function() {
         var nCategorias
-        axios.get("http://127.0.0.1:8000/categorias")
+        
+        //axios.get("http://127.0.0.1:8000/categorias")        
+        axios.get("https://cinencuadre.herokuapp.com/categorias")
         .then( result => {
             var listaCategorias = result.data           
             nCategorias = listaCategorias.length  
