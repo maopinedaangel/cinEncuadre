@@ -46,8 +46,12 @@ export default {
                 nCategorias = listaCategorias.length  
                 var aleatorio = Math.floor(Math.random()*nCategorias)                            
                 this.miCategoria = listaCategorias[aleatorio] 
+                /*
                 var nombreImagen = this.miCategoria.replaceAll(' ','-')   
-                nombreImagen = nombreImagen.replaceAll(',','')        
+                nombreImagen = nombreImagen.replaceAll(',','')   
+                */
+                var nombreImagen = this.miCategoria.replace(/ /g,'-')   
+                nombreImagen = nombreImagen.replaceAll(/,/g,'')                   
                 nombreImagen = nombreImagen.normalize()                       
                 this.imgEspecial = "port-" + nombreImagen.toLowerCase(nombreImagen) + ".jpeg"                 
             })
