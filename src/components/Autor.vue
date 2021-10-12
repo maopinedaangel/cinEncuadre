@@ -28,6 +28,7 @@ export default {
   methods: {
     autenticar: function() {    
       //alert("El username registrado es " + this.datos_user.username);
+      //axios.post("http://127.0.0.1:8000/autor/auth", this.datos_user)      
       axios.post("http://127.0.0.1:8000/autor/auth", this.datos_user)
       .then( result => {
         if (result.data.Autenticado) {
